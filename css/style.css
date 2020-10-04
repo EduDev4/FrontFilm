@@ -1,8 +1,13 @@
 body{
     background-color:rgb(39, 40, 34);
     color:white;
-    font-family: Consolas, sans-serif;
+    font-family: Consolas, sans-serif;        
+}
 
+main{
+    width: 800px;
+    margin:auto;
+    padding-bottom: 2rem;
 }
 
 a{
@@ -19,5 +24,18 @@ a:visited{
 }
 
 h2{
+    padding-left: 2rem;
     color: rgb(174, 129, 255);
+}
+
+section{
+    margin: 2rem;    
+    border: 1px solid;
+    padding: 2rem;
+    padding-right: 4rem;
+    border-color: rgb(62, 63, 58) ;
+}
+
+.hidden{
+    display: none;
 }
