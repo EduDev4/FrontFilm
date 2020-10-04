@@ -105,6 +105,54 @@ function main(){
 
     function onClickSearch() {
         console.log(window.localStorage)
+        const active_user = window.localStorage.getItem(activeUserLocalStorage) ?
+        JSON.parse(window.localStorage.getItem(activeUserLocalStorage)) : undefined
+        
+        let query = encodeURIComponent(document.querySelector('input[name="query"]').value) 
+
+        const method = 'GET'
+        let token = ""
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${active_user.apikey}&language=en-US&query=${query}&page=1&include_adult=false`   
+        // https://restcountries.eu/rest/v2/name/{}
+        /* const http = new XMLHttpRequest()
+        console.log(http)
+        http.onreadystatechange = ajaxCallback
+        http.addEventListener('readystatechange', ajaxCallback)
+        http.open(method, url)
+        http.send(null) */
+
+        // fetch
+        // axios
+
+        fetch(url)
+        .then( resp => {
+            console.log(resp)
+            if (resp.status < 200 || resp.status >= 300) {
+                console.log(resp.statusText)
+                throw new Error('HTTP Error ' + resp.status)
+            }
+            return resp.json()
+        })
+        .then( data =>  processResults(data))
+        .catch (error => alert(error.message))   
+
+    }
+
+    function processResults(data){
+        console.log(data)
+        const results_box = document.querySelector('#results')
+        results_box.innerHTML = ""
+        const page = data.page
+        const results = data.total_results
+        const total_pages = data.total_pages
+        let i=1
+        for(let result of data.results){
+            let pelicula = document.createElement("div")
+            pelicula.innerHTML += `${i} -- <br><b>${result.original_title}</b><br><br>${result.overview}<br><br><br>`
+            i++
+            results_box.appendChild(pelicula)
+        }
+        results_box.innerHTML=`[${results} resultados] -- Página ${page} de ${total_pages}<br><br><a href="#"><- Pagina Anterior</a> || <a href="#">Página Siguiente -></a><br><br>${results_box.innerHTML}<br> [${results} resultados] -- Página ${page} de ${total_pages}<br><br><a href="#"><- Pagina Anterior</a> || <a href="#">Página Siguiente -></a>`
     }
 
     function generateToken(user){
