@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontFilm</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/films.css"> 
+    <script type="module" src="./js/application.js"></script>         
+</head>
+<body>
+    <main>
+        <h2>Consulta de películas</h2>
+        <span class="subtitle">Bienvenido <span id="display_user"></span> (Consultando con el token: <span id="display_token"></span>)</span>     
+        <form id="query_form">
+            <section id="query_box">            
+                Busqueda:<br>
+                <input required name="query" type="text">  <input id="query_button" class="send-button" value="Buscar">                             
+            </section> 
+            <section id="error_box" class="hidden">
+                <span id="error_text"></span>
+            </section> 
+            <section id="results_box">            
+                Resultados:<br>
+                <div id="results">
+                    <!--Aquí resultados dinamicos-->
+                </div>                               
+            </section> 
+                       
+        </form>
+    </main>    
+</body>
+</html>
