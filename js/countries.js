@@ -31,7 +31,7 @@ function addCountriesToSelect(data) {
     let i = 0;
     const selectCountries = document.querySelector('#countries')
     country_to_add = document.createElement("option")
-    country_to_add.text = "-- Select your country --"
+    country_to_add.text = "-- Seleccione su país --"
     selectCountries.add(country_to_add, selectCountries[i])
     i++
     country_to_add = document.createElement("option")

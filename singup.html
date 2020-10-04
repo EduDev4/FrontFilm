@@ -9,27 +9,61 @@
     <script type="text/javascript" src="./js/countries.js"></script>  
 </head>
 <body>
+    <h2>Formulario de registro</h2>
 <form>
     <section id="gender">
-        <input type="radio" id="male" name="gender" value="male">
+        Género:<br>
+        <br>
+        <input required type="radio" id="male" name="gender" value="male">
         <label for="male">Masculino</label><br>
-        <input type="radio" id="female" name="gender" value="female">
+        <input required type="radio" id="female" name="gender" value="female">
         <label for="female">Fememino</label><br>
-        <input type="radio" id="other" name="gender" value="other">
+        <input required type="radio" id="other" name="gender" value="other">
         <label for="other">Otro</label>
     </section>
     <section id="name">
-        Nombre: <input type="text" name="firstname"><br>
-        Apellidos: <input type="text" name="lastname">        
+        Nombre: <input required type="text" name="firstname"><br>
+        Apellidos: <input required type="text" name="lastname">        
     </section>
     <section id="geolocation" onchange="showProvinceForSpain()">
-        Pais: <br>
-        <select id="countries">            
+        País: <br>
+        <select required id="countries">            
         </select><br>
         <span class="hidden provinces">Provincia: <br></span>
-        <select id="provinces" class="hidden provinces">            
+        <select required id="provinces" class="hidden provinces">
+            <option>-- Seleccione su provincia --</option>    
+            <option>Madrid</option>    
+            <option>Barcelona</option>    
+            <option>Valencia</option>    
+            <option>Cádiz</option>    
+            <option>Otra</option>
         </select>
     </section>
+    <section id="contact">
+        Teléfono:<br>
+        <input required name="phone" type="text">
+        Email: <br>
+        <input required name="email" type="email">
+    </section>
+    <section id="login-details">
+        Usuario:<br>
+        <input required name="username" type="text">
+        Contraseña:<br>
+        <input required name="password" type="password">
+        Repita contraseña:<br>
+        <input required name="password-retype" type="password">
+        API KEY:<br>
+        <input required name="username" type="text">
+        Motivo de la solicitud de registro:<br>
+        <textarea required name="reason"></textarea>
+    </section>    
+    <section id="conditions">
+        <input required type="checkbox" id="terms" name="terms" value="terms">
+        <label for="terms"> Acepto los <a href="#">terminos</a> y <a href="#">condiciones</a> del sitio.</label><br>
+    </section>
+    <div class="send-wrap">
+        <input class="send-button" type="submit" value="Enviar">
+    </div>
 </form>
 </body>
 </html>

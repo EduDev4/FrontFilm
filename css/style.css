@@ -17,3 +17,7 @@ a:hover{
 a:visited{
     color: rgba(166, 226, 46, 0.1);
 }
+
+h2{
+    color: rgb(174, 129, 255);
+}
