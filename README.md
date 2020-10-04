@@ -23,4 +23,10 @@
 - Una vez buscado, se muestra el número de resultados y el número de páginas.
 - Se diseña la UI de la paginación
 - Los resultados cargan en formato texto. Título y descripción de la película.
-
+  
+### Detalle de pelicula  /film.html?id=123456  
+- Muestra una página sencilla con los detalles de la película con ID parado por URI  
+- Se pasa el ID de la pelicula por parametro en la URI  
+- Se carga una nueva petición a la API con el ID de la pelicula y se obtienen los detalles  
+- Se añade el HTML a la vista con los datos más relevantes de la película  
+- Se añade enlace para volver a Buscar   
