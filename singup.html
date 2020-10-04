@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FrontFilm</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/singup.css">    
+    <script type="text/javascript" src="./js/countries.js"></script>  
 </head>
 <body>
-    
+<form>
+    <section id="gender">
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Masculino</label><br>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Fememino</label><br>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Otro</label>
+    </section>
+    <section id="name">
+        Nombre: <input type="text" name="firstname"><br>
+        Apellidos: <input type="text" name="lastname">        
+    </section>
+    <section id="geolocation" onchange="showProvinceForSpain()">
+        Pais: <br>
+        <select id="countries">            
+        </select><br>
+        <span class="hidden provinces">Provincia: <br></span>
+        <select id="provinces" class="hidden provinces">            
+        </select>
+    </section>
+</form>
 </body>
 </html>
