@@ -32,6 +32,11 @@ function main(){
          
     }
 
+    const filmBox =  document.querySelector('#film_box')    
+    if(filmBox){
+        loadFilmData()
+    }
+
     function onClickSingUp() {
         const singupForm = document.querySelector('#singup_form')
         const inputs = [...singupForm.querySelectorAll('input')]
@@ -103,6 +108,53 @@ function main(){
         }        
     }
 
+    function loadFilmData(){
+        const active_user = window.localStorage.getItem(activeUserLocalStorage) ?
+        JSON.parse(window.localStorage.getItem(activeUserLocalStorage)) : undefined
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get('id')
+        console.log(id);
+
+        const method = 'GET'
+        let token = ""
+        const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${active_user.apikey}&language=en-US`   
+        // https://restcountries.eu/rest/v2/name/{}
+        /* const http = new XMLHttpRequest()
+        console.log(http)
+        http.onreadystatechange = ajaxCallback
+        http.addEventListener('readystatechange', ajaxCallback)
+        http.open(method, url)
+        http.send(null) */
+
+        // fetch
+        // axios
+
+        fetch(url)
+        .then( resp => {
+            console.log(resp)
+            if (resp.status < 200 || resp.status >= 300) {
+                console.log(resp.statusText)
+                throw new Error('HTTP Error ' + resp.status)
+            }
+            return resp.json()
+        })
+        .then( data =>  processFilmResult(data))
+        .catch (error => alert(error.message))  
+    }
+
+    function processFilmResult(data){
+        const film_details_box = document.querySelector("#film_details")
+        let film_details_html = `<h3>${data.original_title}</h3>`
+        film_details_html = `${film_details_html}<b>Puntuación: ${data.popularity}</b><br><br>`
+        film_details_html = `${film_details_html}Sinopsis:<br>${data.overview}<br><br>`
+        film_details_html = `${film_details_html}Fecha de lanzamiento: ${data.release_date}<br>`
+        film_details_html = `${film_details_html}Duración ${data.runtime} minutos<br>`
+        film_details_html = `${film_details_html}Idioma original: ${data.original_language}<br><br>`   
+        film_details_box.innerHTML = film_details_html    
+    }
+
     function onClickSearch() {
         console.log(window.localStorage)
         const active_user = window.localStorage.getItem(activeUserLocalStorage) ?
@@ -146,9 +198,9 @@ function main(){
         const results = data.total_results
         const total_pages = data.total_pages
         let i=1
-        for(let result of data.results){
+        for(let result of data.results){            
             let pelicula = document.createElement("div")
-            pelicula.innerHTML += `${i} -- <br><b>${result.original_title}</b><br><br>${result.overview}<br><br><br>`
+            pelicula.innerHTML += `${i} -- <br><b><a href="film.html?id=${result.id}">${result.original_title}</a></b><br><br>${result.overview}<br><br><br>`
             i++
             results_box.appendChild(pelicula)
         }
